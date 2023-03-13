@@ -9,8 +9,9 @@
       <div class="logo">
         <a href="#" class="logo-text">N0B0DY</a>
       </div>
-      <div class="typing-container">
-        <div class="typing"></div>
+      <div class="typing">
+        <span id="sentence"></span>
+        <span id="cursor"></span>
       </div>
       <div class="content">
         <div class="links">
@@ -43,20 +44,35 @@
           if (i > sentence.length) {
             clearInterval(interval);
             setTimeout(() => {
-              element.innerHTML = "";
-              typeEffect(element, sentence, speed);
-            }, 2000);
+              typeCursor(cursor);
+            }, 1000);
           }
         }, speed);
       }
+      function typeCursor(element) {
+        setInterval(() => {
+          if (element.style.opacity === "0") {
+            element.style.opacity = "1";
+          } else {
+            element.style.opacity = "0";
+          }
+        }, 500);
+      }
       const logo = document.querySelector(".logo-text");
-      const typing = document.querySelector(".typing");
-      sentences.forEach((sentence, index) => {
-        setTimeout(() => {
-          logo.classList.add("logo-text-animation");
-          typeEffect(typing, sentence, 100);
-        }, 3000 * index);
-      });
+      const cursor = document.querySelector("#cursor");
+      let index = 0;
+      setInterval(() => {
+        const sentence = sentences[index];
+        logo.innerHTML = "";
+        document.querySelector("#sentence").innerHTML = "";
+        typeEffect(document.querySelector("#sentence"), sentence, 100);
+        typeEffect(logo, sentence, 100);
+        index++;
+        if (index >= sentences.length) {
+          index = 0;
+        }
+      }, 5000);
+      typeCursor(cursor);
     </script>
   </body>
 </html>
