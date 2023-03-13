@@ -87,6 +87,26 @@ body {
   background-color: #ffffff00;
 }
 
+.typing {
+  background: linear-gradient(to right, #4a148c, #7b1fa2, #9c27b0, #ba68c8, #ce93d8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @keyframes rainbow {
   0% {
     background-position: 0% 50%;
