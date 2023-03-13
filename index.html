@@ -28,9 +28,8 @@
     </div>
     <div class="footer">Made with ❤ by N0B0DY</div>
 
-    <script>
-      // Define the list of sentences to type out
-      const sentences = [          
+   <script>
+     const sentences = [
         "Contact me where im most active!",
         "Freelance developer!",
         "Mostly using Python and now learning golang!"
@@ -46,17 +45,24 @@
         }, speed);
       }
       const container = document.querySelector(".container");
-      while (true) {
-      sentences.forEach((sentence, index) => {
-        const div = document.createElement("div");
-        div.classList.add("typing");
-        typeEffect(div, sentence, 100);
-        container.appendChild(div);
-        setTimeout(() => {
+      function runTypeEffect() {
+        container.querySelectorAll(".typing").forEach((div) => {
           container.removeChild(div);
-        }, (sentence.length + 1) * 100);
-      });
+        });
+        sentences.forEach((sentence, index) => {
+          const div = document.createElement("div");
+          div.classList.add("typing");
+          typeEffect(div, sentence, 100);
+          container.appendChild(div);
+          setTimeout(() => {
+            container.removeChild(div);
+          }, (sentence.length + 1) * 100);
+        });
+        setTimeout(runTypeEffect, sentences.length * 1100);
       }
+      runTypeEffect();
     </script>
+  </body>
+</html>
   </body>
 </html>
