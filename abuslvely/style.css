@@ -1,0 +1,136 @@
+html {
+  background-color: #1f1f1f;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slide-up 2s ease;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  animation: rainbow 3s ease infinite;
+  background: linear-gradient(to right, #FF2C55, #FFD200, #23FF00, #00FFE9, #8200FF);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.links img {
+  border-radius: 50%;
+}
+
+.link a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+  transition: all 0.3s ease;
+}
+
+.link a:hover {
+  box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.75);
+}
+
+.link-telegram {
+  background-color: #ffffff00;
+}
+
+.link-discord {
+  background-color: #ffffff00;
+}
+
+.link-guilded {
+  background-color: #ffffff00;
+}
+
+.typing {
+  font-size: 24px;
+  font-family: "Arial", sans-serif;
+  color: #fff;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00cc, 0 0 30px #ff0099, 0 0 40px #ff0066, 0 0 50px #ff0033, 0 0 60px #ff0000;
+  animation: typing-rain 1s infinite;
+}
+
+@keyframes typing-rain {
+  0% {
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00cc, 0 0 30px #ff0099, 0 0 40px #ff0066, 0 0 50px #ff0033, 0 0 60px #ff0000;
+  }
+  16.666% {
+    color: #ff00cc;
+    text-shadow: 0 0 10px #ff00cc, 0 0 20px #ff0099, 0 0 30px #ff0066, 0 0 40px #ff0033, 0 0 50px #ff0000, 0 0 60px #ff00ff;
+  }
+  33.333% {
+    color: #ff0099;
+    text-shadow: 0 0 10px #ff0099, 0 0 20px #ff0066, 0 0 30px #ff0033, 0 0 40px #ff0000, 0 0 50px #ff00ff, 0 0 60px #ff00cc;
+  }
+  50% {
+    color: #ff0066;
+    text-shadow: 0 0 10px #ff0066, 0 0 20px #ff0033, 0 0 30px #ff0000, 0 0 40px #ff00ff, 0 0 50px #ff00cc, 0 0 60px #ff0099;
+  }
+@keyframes typing-rain {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
