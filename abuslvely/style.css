@@ -32,7 +32,7 @@ body {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 3px rgb(255 109 199);
   display: flex;
   justify-content: center;
   align-items: center;
