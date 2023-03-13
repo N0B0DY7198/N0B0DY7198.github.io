@@ -1,31 +1,104 @@
+html {
+  background-color: #1f1f1f;
+}
+
 body {
-  background-color: #444444;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slide-up 1s ease;
 }
 
 .logo {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #FF2C55, #FFD200, #23FF00, #00FFE9, #8200FF);
+  animation: rainbow 3s ease infinite;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.logo h1 {
-  font-size: 40px;
-  color: #ffffff;
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  animation: rainbow 3s ease infinite;
+  background: linear-gradient(to right, #FF2C55, #FFD200, #23FF00, #00FFE9, #8200FF);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .links {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.links a {
-  display: inline-block;
-  margin: 20px;
+.link {
+  margin: 0 10px;
 }
 
-.links img {
-  width: 100px;
-  height: 100px;
+.link-telegram {
+  background-color: #2CA5E0;
+}
+
+.link-discord {
+  background-color: #7289DA;
+}
+
+.link-guilded {
+  background-color: #E5E5E5;
+}
+
+.link a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+  transition: all 0.3s ease;
+}
+
+.link a:hover {
+  box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.75);
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
