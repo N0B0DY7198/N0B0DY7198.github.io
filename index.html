@@ -28,64 +28,68 @@
     </div>
     <div class="footer">Made with ❤ by N0B0DY</div>
 
-   <script>
-    const sentences = [  "Contact me where im most active!",  "Freelance developer!",  "Mostly using Python and now learning golang!"];
-    function typeEffect(element, sentence, speed) {
-      let i = 0;
-      const interval = setInterval(() => {
-        element.innerHTML += sentence.charAt(i);
-        i++;
-        if (i > sentence.length) {
-          clearInterval(interval);
+    <script>
+      const sentences = [
+        "Contact me where im most active!",
+        "Freelance developer!",
+        "Mostly using Python and now learning golang!"
+      ];
+      
+      function typeEffect(element, sentence, speed, callback) {
+        let i = 0;
+        const interval = setInterval(() => {
+          element.innerHTML += sentence.charAt(i);
+          i++;
+          if (i > sentence.length) {
+            clearInterval(interval);
+            callback();
+          }
+        }, speed);
+      }
+      
+      function backspaceEffect(element, callback) {
+        let sentence = element.innerHTML;
+        let i = sentence.length - 1;
+        const interval = setInterval(() => {
+          element.innerHTML = sentence.substring(0, i);
+          i--;
+          if (i < 0) {
+            clearInterval(interval);
+            callback();
+          }
+        }, 50);
+      }
+      
+      const container = document.querySelector(".container");
+      function runTypeEffect() {
+        container.querySelectorAll(".typing").forEach((div) => {
+          container.removeChild(div);
+        });
+        
+        let currentIndex = 0;
+        function typeNext() {
+          typeEffect(div, sentences[currentIndex], 100, () => {
+            setTimeout(() => {
+              backspaceEffect(div, () => {
+                currentIndex++;
+                if (currentIndex < sentences.length) {
+                  typeNext();
+                } else {
+                  setTimeout(runTypeEffect, 2000);
+                }
+              });
+            }, 1000);
+          });
         }
-      }, speed);
-    }
-    const container = document.querySelector(".container");
-    function runTypeEffect() {
-      let completedSentences = 0; 
-      sentences.forEach((sentence, index) => {
+        
         const div = document.createElement("div");
         div.classList.add("typing");
-        typeEffect(div, sentence, 100);
         container.appendChild(div);
-        if (index === sentences.length - 1) {
-          setTimeout(() => {
-            reverseTypeEffect(container.querySelectorAll(".typing"), 100);
-          }, (sentence.length + 1) * 100);
-        } else {
-          // Track the completion of this sentence
-          setTimeout(() => {
-            completedSentences++;
-            if (completedSentences === sentences.length) {
-              reverseTypeEffect(container.querySelectorAll(".typing"), 100);
-            }
-          }, (sentence.length + 1) * 100);
-        }
-      });
-    }
-    function reverseTypeEffect(divs, speed) {
-      let i = divs.length - 1;
-      const interval = setInterval(() => {
-        const div = divs[i];
-        const sentence = div.innerHTML;
-        div.innerHTML = sentence.slice(0, -1);
-        if (sentence.length === 0) {
-          clearInterval(interval);
-          container.removeChild(div);
-          i--;
-          if (i >= 0) {
-            setTimeout(() => {
-              reverseTypeEffect(divs, speed);
-            }, speed);
-          }
-        }
-      }, speed);
-    }
-    document.addEventListener("DOMContentLoaded", () => {
+        
+        typeNext();
+      }
+      
       runTypeEffect();
-    });
     </script>
-  </body>
-</html>
   </body>
 </html>
