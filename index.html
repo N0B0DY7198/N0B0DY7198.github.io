@@ -8,6 +8,10 @@
     <div class="container">
       <div class="logo">
         <a href="#" class="logo-text">N0B0DY</a>
+        <span class="console-cursor"></span>
+      </div>
+      <div class="typing">
+        <span id="typing-text"></span>
       </div>
       <div class="content">
         <div class="links">
@@ -24,5 +28,48 @@
       </div>
     </div>
     <div class="footer">Made with ❤ by N0B0DY</div>
+
+    <script>
+      // Define the list of sentences to type out
+      const sentences = [
+        "Welcome to N0B0DY",
+        "We are a gaming community",
+        "Join us on Telegram, Discord, and Guilded"
+      ];
+
+      // Define the typing effect function
+      function typeEffect(element, sentence, speed) {
+        let i = 0;
+        const interval = setInterval(() => {
+          element.innerHTML += sentence.charAt(i);
+          i++;
+          if (i > sentence.length) {
+            clearInterval(interval);
+            setTimeout(() => {
+              document.querySelector(".console-cursor").classList.remove("blink");
+            }, 500);
+          }
+        }, speed);
+      }
+
+      // Get the logo and typing elements
+      const logo = document.querySelector(".logo-text");
+      const typingText = document.querySelector("#typing-text");
+
+      // Loop through the list of sentences and type them out one by one
+      sentences.forEach((sentence, index) => {
+        setTimeout(() => {
+          logo.innerHTML = "";
+          typingText.innerHTML = "";
+          typingText.classList.add("typing");
+          typeEffect(typingText, sentence, 100);
+        }, 3000 * index);
+      });
+
+      // Add the blinking console cursor effect
+      setInterval(() => {
+        document.querySelector(".console-cursor").classList.toggle("blink");
+      }, 500);
+    </script>
   </body>
 </html>
