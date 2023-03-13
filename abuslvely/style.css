@@ -44,7 +44,7 @@ body {
   margin: 0;
   padding: 0;
   animation: rainbow 3s ease infinite;
-  background: linear-gradient(to right, #FF2C55, #FFD200, #23FF00, #00FFE9, #8200FF);
+  background: linear-gradient(to right, #ff5cf3, #f400ff, #23FF00, #00FFE9, #8200FF);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
