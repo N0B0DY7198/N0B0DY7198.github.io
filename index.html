@@ -48,11 +48,12 @@
       }
       const logo = document.querySelector(".logo-text");
       const typing = document.querySelector(".typing");
-      sentences.forEach((sentence, index) => {
-        setTimeout(() => {
-          logo.classList.add("hidden");
-          typing.innerHTML = '<div class="typewriter">' + sentence + '</div>';
-        }, 3000 * index);
+      let index = 0;
+setInterval(() => {
+  logo.innerHTML = "";
+  typeEffect(logo, sentences[index], 100);
+  index = (index + 1) % sentences.length;
+}, 3000);
       });
     </script>
   </body>
