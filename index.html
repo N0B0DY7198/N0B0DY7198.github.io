@@ -36,8 +36,6 @@
         "Freelance developer!",
         "Mostly using Python and now learning golang!"
       ];
-
-      // Define the typing effect function
       function typeEffect(element, sentence, speed) {
         let i = 0;
         const interval = setInterval(() => {
@@ -45,31 +43,17 @@
           i++;
           if (i > sentence.length) {
             clearInterval(interval);
-            setTimeout(() => {
-              document.querySelector(".console-cursor").classList.remove("blink");
-            }, 500);
           }
         }, speed);
       }
-
-      // Get the logo and typing elements
       const logo = document.querySelector(".logo-text");
-      const typingText = document.querySelector("#typing-text");
-
-      // Loop through the list of sentences and type them out one by one
+      const typing = document.querySelector(".typing");
       sentences.forEach((sentence, index) => {
         setTimeout(() => {
-          logo.innerHTML = "";
-          typingText.innerHTML = "";
-          typingText.classList.add("typing");
-          typeEffect(typingText, sentence, 100);
+          logo.classList.add("hidden");
+          typing.innerHTML = '<div class="typewriter">' + sentence + '</div>';
         }, 3000 * index);
       });
-
-      // Add the blinking console cursor effect
-      setInterval(() => {
-        document.querySelector(".console-cursor").classList.toggle("blink");
-      }, 500);
     </script>
   </body>
 </html>
