@@ -9,6 +9,9 @@
       <div class="logo">
         <a href="#" class="logo-text">N0B0DY</a>
       </div>
+      <div class="typing-container">
+        <div class="typing-text"></div>
+      </div>
       <div class="content">
         <div class="links">
           <a href="https://t.me/NOB0DYONTOP" class="link link-telegram">
@@ -38,17 +41,18 @@
           i++;
           if (i > sentence.length) {
             clearInterval(interval);
+            setTimeout(() => {
+              element.innerHTML = "";
+              typeEffect(element, sentence, speed);
+            }, 2000);
           }
         }, speed);
       }
-      const container = document.querySelector(".container");
-      const typingElement = document.createElement("div");
-      typingElement.classList.add("typing-effect");
-      container.appendChild(typingElement);
+      const typingText = document.querySelector(".typing-text");
       sentences.forEach((sentence, index) => {
         setTimeout(() => {
-          typingElement.innerHTML = "";
-          typeEffect(typingElement, sentence, 100);
+          typingText.innerHTML = "";
+          typeEffect(typingText, sentence, 100);
         }, 3000 * index);
       });
     </script>
