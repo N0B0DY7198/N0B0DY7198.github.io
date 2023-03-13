@@ -29,38 +29,64 @@
     <div class="footer">Made with ❤ by N0B0DY</div>
 
    <script>
-     const sentences = [
-        "Contact me where im most active!",
-        "Freelance developer!",
-        "Mostly using Python and now learning golang!"
-      ];
-      function typeEffect(element, sentence, speed) {
-        let i = 0;
-        const interval = setInterval(() => {
-          element.innerHTML += sentence.charAt(i);
-          i++;
-          if (i > sentence.length) {
-            clearInterval(interval);
-          }
-        }, speed);
-      }
-      const container = document.querySelector(".container");
-      function runTypeEffect() {
-        container.querySelectorAll(".typing").forEach((div) => {
-          container.removeChild(div);
-        });
+    const sentences = [  "Contact me where im most active!",  "Freelance developer!",  "Mostly using Python and now learning golang!"];
+
+    function typeEffect(element, sentence, speed) {
+      let i = 0;
+      const interval = setInterval(() => {
+        element.innerHTML += sentence.charAt(i);
+        i++;
+        if (i > sentence.length) {
+          clearInterval(interval);
+        }
+      }, speed);
+    }
+
+    const container = document.querySelector(".container");
+    function runTypeEffect() {
+      container.querySelectorAll(".typing").forEach((div) => {
+        container.removeChild(div);
+      });
+
+      // Add a delay of 2 seconds before starting the backspacing function
+      setTimeout(() => {
         sentences.forEach((sentence, index) => {
           const div = document.createElement("div");
           div.classList.add("typing");
           typeEffect(div, sentence, 100);
           container.appendChild(div);
-          setTimeout(() => {
-            container.removeChild(div);
-          }, (sentence.length + 1) * 100);
+
+          // Check if this is the last sentence
+          if (index === sentences.length - 1) {
+            // Start the backspacing function after all sentences have been typed out
+            setTimeout(() => {
+              reverseTypeEffect(container.querySelectorAll(".typing"), 100);
+            }, (sentence.length + 1) * 100);
+          }
         });
-        setTimeout(runTypeEffect, sentences.length * 1100);
-      }
-      runTypeEffect();
+      }, sentences.length * 1100);
+    }
+
+    function reverseTypeEffect(divs, speed) {
+      let i = divs.length - 1;
+      const interval = setInterval(() => {
+        const div = divs[i];
+        const sentence = div.innerHTML;
+        div.innerHTML = sentence.slice(0, -1);
+        if (sentence.length === 0) {
+          clearInterval(interval);
+          container.removeChild(div);
+          i--;
+          if (i >= 0) {
+            setTimeout(() => {
+              reverseTypeEffect(divs, speed);
+            }, speed);
+          }
+        }
+      }, speed);
+    }
+
+    runTypeEffect();
     </script>
   </body>
 </html>
