@@ -9,10 +9,6 @@
       <div class="logo">
         <a href="#" class="logo-text">N0B0DY</a>
       </div>
-      <div class="typing">
-        <span id="sentence"></span>
-        <span id="cursor"></span>
-      </div>
       <div class="content">
         <div class="links">
           <a href="https://t.me/NOB0DYONTOP" class="link link-telegram">
@@ -30,7 +26,6 @@
     <div class="footer">Made with ❤ by N0B0DY</div>
 
     <script>
-      // Define the list of sentences to type out
       const sentences = [
         "Contact me where im most active!",
         "Freelance developer!",
@@ -43,36 +38,19 @@
           i++;
           if (i > sentence.length) {
             clearInterval(interval);
-            setTimeout(() => {
-              typeCursor(cursor);
-            }, 1000);
           }
         }, speed);
       }
-      function typeCursor(element) {
-        setInterval(() => {
-          if (element.style.opacity === "0") {
-            element.style.opacity = "1";
-          } else {
-            element.style.opacity = "0";
-          }
-        }, 500);
-      }
-      const logo = document.querySelector(".logo-text");
-      const cursor = document.querySelector("#cursor");
-      let index = 0;
-      setInterval(() => {
-        const sentence = sentences[index];
-        logo.innerHTML = "";
-        document.querySelector("#sentence").innerHTML = "";
-        typeEffect(document.querySelector("#sentence"), sentence, 100);
-        typeEffect(logo, sentence, 100);
-        index++;
-        if (index >= sentences.length) {
-          index = 0;
-        }
-      }, 5000);
-      typeCursor(cursor);
+      const container = document.querySelector(".container");
+      const typingElement = document.createElement("div");
+      typingElement.classList.add("typing-effect");
+      container.appendChild(typingElement);
+      sentences.forEach((sentence, index) => {
+        setTimeout(() => {
+          typingElement.innerHTML = "";
+          typeEffect(typingElement, sentence, 100);
+        }, 3000 * index);
+      });
     </script>
   </body>
 </html>
