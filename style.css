@@ -23,8 +23,6 @@ body {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: linear-gradient(to right, #FF2C55, #FFD200, #23FF00, #00FFE9, #8200FF);
-  animation: rainbow 3s ease infinite;
   box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
@@ -45,15 +43,13 @@ body {
 
 .links {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
-.link img {
-  width: 100px;
-  height: 100px;
-  display: block;
+.link {
   margin: 0 10px;
 }
 
