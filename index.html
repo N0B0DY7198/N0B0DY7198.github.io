@@ -30,7 +30,6 @@
 
    <script>
     const sentences = [  "Contact me where im most active!",  "Freelance developer!",  "Mostly using Python and now learning golang!"];
-
     function typeEffect(element, sentence, speed) {
       let i = 0;
       const interval = setInterval(() => {
@@ -41,32 +40,29 @@
         }
       }, speed);
     }
-
     const container = document.querySelector(".container");
     function runTypeEffect() {
-      container.querySelectorAll(".typing").forEach((div) => {
-        container.removeChild(div);
-      });
-
-      // Add a delay of 2 seconds before starting the backspacing function
-      setTimeout(() => {
-        sentences.forEach((sentence, index) => {
-          const div = document.createElement("div");
-          div.classList.add("typing");
-          typeEffect(div, sentence, 100);
-          container.appendChild(div);
-
-          // Check if this is the last sentence
-          if (index === sentences.length - 1) {
-            // Start the backspacing function after all sentences have been typed out
-            setTimeout(() => {
+      let completedSentences = 0; 
+      sentences.forEach((sentence, index) => {
+        const div = document.createElement("div");
+        div.classList.add("typing");
+        typeEffect(div, sentence, 100);
+        container.appendChild(div);
+        if (index === sentences.length - 1) {
+          setTimeout(() => {
+            reverseTypeEffect(container.querySelectorAll(".typing"), 100);
+          }, (sentence.length + 1) * 100);
+        } else {
+          // Track the completion of this sentence
+          setTimeout(() => {
+            completedSentences++;
+            if (completedSentences === sentences.length) {
               reverseTypeEffect(container.querySelectorAll(".typing"), 100);
-            }, (sentence.length + 1) * 100);
-          }
-        });
-      }, sentences.length * 1100);
+            }
+          }, (sentence.length + 1) * 100);
+        }
+      });
     }
-
     function reverseTypeEffect(divs, speed) {
       let i = divs.length - 1;
       const interval = setInterval(() => {
@@ -85,8 +81,9 @@
         }
       }, speed);
     }
-
-    runTypeEffect();
+    document.addEventListener("DOMContentLoaded", () => {
+      runTypeEffect();
+    });
     </script>
   </body>
 </html>
