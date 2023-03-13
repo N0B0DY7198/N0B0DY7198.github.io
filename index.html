@@ -8,10 +8,9 @@
     <div class="container">
       <div class="logo">
         <a href="#" class="logo-text">N0B0DY</a>
-        <span class="console-cursor"></span>
       </div>
-      <div class="typing">
-        <span id="typing-text"></span>
+      <div class="typing-container">
+        <div class="typing"></div>
       </div>
       <div class="content">
         <div class="links">
@@ -43,17 +42,20 @@
           i++;
           if (i > sentence.length) {
             clearInterval(interval);
+            setTimeout(() => {
+              element.innerHTML = "";
+              typeEffect(element, sentence, speed);
+            }, 2000);
           }
         }, speed);
       }
       const logo = document.querySelector(".logo-text");
       const typing = document.querySelector(".typing");
-      let index = 0;
-setInterval(() => {
-  logo.innerHTML = "";
-  typeEffect(logo, sentences[index], 100);
-  index = (index + 1) % sentences.length;
-}, 3000);
+      sentences.forEach((sentence, index) => {
+        setTimeout(() => {
+          logo.classList.add("logo-text-animation");
+          typeEffect(typing, sentence, 100);
+        }, 3000 * index);
       });
     </script>
   </body>
